@@ -1,0 +1,145 @@
+/* Common styles */
+body {
+    font-family: 'Didot', sans-serif; /* Font family for the entire page */
+    margin: 0; 
+    padding: 0; 
+    background-color: #a3ccee; /* Light baby blue background */
+    color: #333; /* Black text for contrast */
+}
+
+header {
+    padding: 20px; /* Space around header content */
+    text-align: center; /* Center the text in the header */
+    background-color: #6ba6d6; /* Slightly darker baby blue for header */
+    border-bottom: 2px solid #5b8fba; /* Darker blue border at the bottom */
+}
+
+h1 {
+    font-size: 2em; /* Main heading size */
+    margin-bottom: 10px; /* Space below the heading */
+}
+
+h2 {
+    font-size: 1.5em; /* Subheading size */
+    margin-bottom: 20px; /* Space below the subheading */
+}
+
+a {
+    text-decoration: none; /* Remove underline from links */
+    color: #000000; /* Dark color for links */
+    font-weight: bold; /* Bold links for emphasis */
+}
+
+/* List Styles */
+#meets-list {
+    padding: 20px; /* Space inside the list container */
+    margin: 0 auto; /* Center the list */
+    max-width: 600px; /* Limit maximum width */
+    background-color: #ffffff; /* White background for the list area */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+#meets-list h2 {
+    text-align: center; /* Centers the heading */
+}
+
+ul {
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0; /* Remove default padding */
+}
+
+li {
+    padding: 10px 15px; /* Space inside each list item */
+    border-bottom: 1px solid #e0e0e0; /* Light gray border between items */
+}
+
+li:last-child {
+    border-bottom: none; /* Remove border from the last item */
+}
+
+li a {
+    display: block; /* Make the entire list item clickable */
+    color: #000000; /* Consistent link color */
+}
+
+li a:hover {
+    background-color: #bcdaf3; /* Light blue background on hover */
+    border-radius: 5px; /* Rounded corners on hover */
+}
+
+/* Table Styles for Individual Meets */
+#meet-results {
+    padding: 20px; /* Space inside the results container */
+    max-width: 100%; /* Full width for results */
+    background-color: #ffffff; /* White background for results */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+table {
+    width: 100%; /* Table takes full width of the container */
+    border-collapse: collapse; /* Remove space between table cells */
+}
+
+th, td {
+    border: 1px solid #ccc; /* Border for table cells */
+    padding: 10px; /* Space inside table cells */
+    text-align: left; /* Align text to the left */
+}
+
+img {
+    max-width: 100%; /* Images should not exceed their container's width */
+    height: auto; /* Maintain aspect ratio of images */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light background for even rows */
+}
+
+#meet-results td a {
+    display: block; /* Ensure the entire cell is clickable */
+    padding: 5px; /* Add padding for better click area */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+#meet-results td a:hover {
+    background-color: #bcdaf3; /* Light blue background on hover */
+    color: #000; /* Change text color on hover */
+}   
+
+/* Responsive styles */
+/* @media (max-width: 480px) { */
+    h1 {
+        font-size: 1.5em; /* Reduce heading size on small screens */
+    }
+
+    h2 {
+        font-size: 1.2em; /* Reduce subheading size on small screens */
+    }
+
+    #meets-list {
+        padding: 10px; /* Reduce padding for small screens */
+    }
+
+    /* Hide specific columns in the results table on small screens */
+    #meet-results th:nth-child(4), 
+    #meet-results th:nth-child(5), 
+    #meet-results th:nth-child(6),
+    #meet-results td:nth-child(4), 
+    #meet-results td:nth-child(5),
+    #meet-results td:nth-child(6) {
+        display: none; /* Hide these columns */
+    }
+
+    #athlete-table {
+        display: block; /* Allow scrolling for the athlete table */
+        overflow-x: auto; /* Horizontal scrolling */
+    }
+
+    header {
+        flex-direction: column; 
+        align-items: flex-start; 
+    }
+/* } */
+
