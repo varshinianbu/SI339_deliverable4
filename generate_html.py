@@ -62,7 +62,7 @@ for filename in os.listdir(folder_path):
                             <tbody>
             '''
 
-            # Initialize content for Ann Arbor Skyline results (with Team Placement)
+            # Initialize content for Ann Arbor Skyline results (with Team Placement and comments)
             skyline_content = html_content.replace(
                 "<h2>Meet Results</h2>",
                 "<h2>Ann Arbor Skyline Results</h2>"
@@ -70,6 +70,14 @@ for filename in os.listdir(folder_path):
                 "<th>Image</th>",
                 "<th>Team Placement</th><th>Image</th>"  # Add Team Placement column for Skyline page
             )
+
+            # Add comments right below the Ann Arbor Skyline header
+            skyline_content += f'''
+                    <section id="skyline-comments">
+                        <p>{comments}</p>
+                    </section>
+            '''
+
             skyline_athletes = []  # List to store HTML rows for Ann Arbor Skyline athletes
             skyline_team_position = 1  # Counter for team placement within Ann Arbor Skyline
 
