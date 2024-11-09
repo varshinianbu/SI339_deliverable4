@@ -80,9 +80,9 @@ for filename in os.listdir(folder_path):
                     <a href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button>Skyline Gallery</button></a>
                 </header>
                 <main>
-                    <section id="team-placements">
+                    <section id="meet-results" class="meet-results">
                         <h2>Team Placement Results</h2>
-                        <table id="team-placement-table">
+                        <table id="athlete-table" class="athlete-table">
                             <thead>
                                 <tr>
                                     <th>Place</th>
@@ -130,6 +130,7 @@ for filename in os.listdir(folder_path):
             </html>
             '''
 
+            # Write the team placement page to a file
             team_placement_filename = sanitize_filename(f"{meet_name}_team_placements")
             with open(team_placement_filename, 'w', encoding='utf-8') as f:
                 f.write(team_placement_content)
