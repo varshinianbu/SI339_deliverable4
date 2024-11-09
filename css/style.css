@@ -1,5 +1,5 @@
 /* General text and header styling */
-header, body, h1, h2, #Home, ul a, #athlete-table td a, #athlete-table th {
+header, body, h1, h2, header button, ul a, #athlete-table td a, #athlete-table th {
     font-family: 'times new roman', sans-serif;
     color: #000000;
 }
@@ -17,7 +17,6 @@ body {
     background-color: #a3ccee;
     margin: 0;
     padding: 0;
-    font-size: 0.75em;
 }
 
 /* Sticky header to stay at the top when scrolling */
@@ -26,42 +25,56 @@ body {
     top: 0;
 }
 
-/* Font size for headings and summary elements */
-h1, h2, summary {
+h1 {
     font-size: 1.75em;
 }
 
-/* General link styling for main links, Home button, and ellipsis */
-ul a, #athlete-table td a, #Home, #ellipsis, #meets-list a {
-    text-decoration: none;
-    font-weight: bold;
-    display: block;
-    padding: 5px;
+h2 {
+    font-size: 1.5em;
+}
+
+/* Font size for headings and summary elements */
+summary, p, #meets-list a, #meet-results h2{
     font-size: 1.25em;
+}
+
+#athlete-table th, #athlete-table td, header button {
+    font-size: 1em; 
+    font-weight: bold;
+}
+
+header a, header button a {
+    text-decoration: none;
+}
+
+/* General link styling for main links, Home button, and ellipsis */
+ul a, #athlete-table td a, #ellipsis, #meets-list a, header button {
+    text-decoration: none;
+    display: block;
+    padding: 10px;
     transition: background-color 0.1s ease-in-out, transform 0.1s ease-in-out, opacity 0.7s ease-in-out;
 }
 
-/* Specific styling for the Home button */
-#Home {
+header button  {
     border: none;
     border-radius: 5px;
-    padding: 10px 15px;
     cursor: pointer;
     text-align: center;
     display: inline;
 }
 
-/* Hover, focus, and active states for links and Home button */
-#Home:hover, ul a:hover, #athlete-table td a:hover, #ellipsis:hover {
-    background-color: #bcdaf3;
-    transform: scale(1.0);
-    border-radius: 5px;
+#Home {
+    position:absolute;
+    top: 10px;
+    right: 10px;
 }
 
 /* Styling for focused and active states to enhance accessibility with light blue */
-#Home:focus, #Home:active, ul a:focus, ul a:active, #athlete-table td a:focus, #athlete-table td a:active, #ellipsis:focus, #ellipsis:active {
+ul a:hover, #athlete-table td a:hover, #ellipsis:hover, ul a:focus, ul a:active, #athlete-table td a:focus, 
+#athlete-table td a:active, #ellipsis:focus, #ellipsis:active, header button:hover, header button:focus, header button:active {
     background-color: #a3ccee; /* Light blue for focus */
     transform: scale(1.0);
+    border-radius: 5px;
     opacity: 0.8;
 }
 
@@ -111,6 +124,10 @@ li:last-child {
     padding: 10px;
 }
 
+.active {
+    background-color: #a3ccee;
+}
+
 /* Alternating row colors for readability */
 tbody tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -132,7 +149,7 @@ details {
 
 /* Styling for bold labels within the summary tag */
 .sumLabel {
-    font-weight: bold;
+    font-weight: normal;
 }
 
 /* Ellipsis styling for text overflow indication */

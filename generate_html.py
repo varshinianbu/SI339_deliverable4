@@ -41,7 +41,7 @@ for filename in os.listdir(folder_path):
                     <h1>{meet_name}</h1>
                     <h2>{date}</h2>
                     <a href="meets_overview.html"><button id="Home">Home</button></a>
-                    <a href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
+                    <a href="{sanitize_filename(meet_name)}"><button class="active">Meet Results</button></a>
                     <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
                     <a href="{sanitize_filename(meet_name + '_team_placements')}"><button>Team Placements</button></a>
                     <a href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button>Skyline Gallery</button></a>
@@ -76,13 +76,13 @@ for filename in os.listdir(folder_path):
                     <a href="meets_overview.html"><button id="Home">Home</button></a>
                     <a href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
                     <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
-                    <a href="{sanitize_filename(meet_name + '_team_placements')}"><button>Team Placements</button></a>
+                    <a href="{sanitize_filename(meet_name + '_team_placements')}"><button class="active">Team Placements</button></a>
                     <a href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button>Skyline Gallery</button></a>
                 </header>
                 <main>
                     <section id="meet-results" class="meet-results">
                         <h2>Team Placement Results</h2>
-                        <table id="athlete-table" class="athlete-table">
+                        <table id="athlete-table">
                             <thead>
                                 <tr>
                                     <th>Place</th>
@@ -182,12 +182,12 @@ for filename in os.listdir(folder_path):
                         <td>
                             <details>
                                 <summary id="ellipsis">...</summary>
-                                <div class="sumLabel">Grade:</div> 
-                                <div>{grade}</div>
-                                <div class="sumLabel">Team:</div>
-                                <div>{team}</div>
-                                <div class="sumLabel">Time:</div>
-                                <div>{time}</div>
+                                <div>Grade:</div> 
+                                <div class="sumLabel">{grade}</div>
+                                <div>Team:</div>
+                                <div class="sumLabel">{team}</div>
+                                <div>Time:</div>
+                                <div class="sumLabel">{time}</div>
                             </details>
                         </td>
                     </tr>
@@ -205,11 +205,10 @@ for filename in os.listdir(folder_path):
                             <td>
                                 <details>
                                     <summary id="ellipsis">...</summary>
-                                    <div class="sumLabel">Grade:</div> 
-                                    <div>{grade}</div>
-                                    <div class="sumLabel">Team:</div>
-                                    <div>{team}</div>
-                                    <div class="sumLabel">Time:</div>
+                                    <div>Grade:</div> 
+                                    <div class="sumLabel">{grade}</div>
+                                    <div>Team:</div>
+                                    <div class="sumLabel">{team}</div>
                                 </details>
                             </td>
                         </tr>
@@ -259,7 +258,7 @@ for filename in os.listdir(folder_path):
                     <a href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
                     <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
                     <a href="{sanitize_filename(meet_name + '_team_placements')}"><button>Team Placements</button></a>
-                    <a href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button>Skyline Gallery</button></a>
+                    <a href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button class="active">Skyline Gallery</button></a>
                 </header>
                 <main>
                     <section id="skyline-gallery" class="gallery">
