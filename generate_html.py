@@ -27,11 +27,6 @@ for filename in os.listdir(folder_path):
             # Get the date
             date = data[1][0]
             
-            # Collect Ann Arbor Skyline comments from row 4
-            comments_row = data[3]  # Row 4 in the CSV (index 3)
-            comments = " ".join([comment for comment in comments_row if comment.strip()])
-            skyline_comments.append((meet_name, comments))
-
             # Initialize HTML content for the meet page (without Team Placement)
             html_content = f'''<!DOCTYPE html>
             <html lang="en">
@@ -46,6 +41,9 @@ for filename in os.listdir(folder_path):
                     <h1>{meet_name}</h1>
                     <h2>{date}</h2>
                     <a href="meets_overview.html"><button id="Home">Home</button></a>
+                    <a href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
+                    <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
+                    <a href="{sanitize_filename(meet_name + '_team_placements')}"><button>Team Placements</button></a>
                 </header>
                 <main>
                     <section id="meet-results">
@@ -62,28 +60,94 @@ for filename in os.listdir(folder_path):
                             <tbody>
             '''
 
-            # Initialize content for Ann Arbor Skyline results (with Team Placement and comments)
+            # Extract team placement information starting from row 7 (index 6)
+            team_placement_content = f'''<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="css/style.css">
+                <title>{meet_name} Team Placements</title>
+            </head>
+            <body>
+                <header class="header" id="myHeader">
+                    <h1>{meet_name} Team Placements</h1>
+                    <a href="meets_overview.html"><button id="Home">Home</button></a>
+                    <a href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
+                    <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
+                    <a href="{sanitize_filename(meet_name + '_team_placements')}"><button>Team Placements</button></a>
+                </header>
+                <main>
+                    <section id="team-placements">
+                        <h2>Team Placement Results</h2>
+                        <table id="team-placement-table">
+                            <thead>
+                                <tr>
+                                    <th>Place</th>
+                                    <th>Team</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            '''
+
+            # Start reading from row 7 (index 6)
+            for row in data[6:]:
+                if len(row) < 3:
+                    continue
+                
+                if len(row) >= 3 and row[0] == "Place" and row[1] == "Grade" and row[2] == "Name":
+                    break  
+                
+                if len(row) >= 3:
+                    place = row[0].rstrip('.')
+                    team = row[1]
+                    score = row[2]
+                    
+                    team_row = f'''
+                    <tr>
+                        <td>{place}</td>
+                        <td>{team}</td>
+                        <td>{score}</td>
+                    </tr>
+                    '''
+                    team_placement_content += team_row
+
+            team_placement_content += '''
+                            </tbody>
+                        </table>
+                    </section>
+                </main>
+            </body>
+            </html>
+            '''
+
+            team_placement_filename = sanitize_filename(f"{meet_name}_team_placements")
+            with open(team_placement_filename, 'w', encoding='utf-8') as f:
+                f.write(team_placement_content)
+
             skyline_content = html_content.replace(
                 "<h2>Meet Results</h2>",
                 "<h2>Ann Arbor Skyline Results</h2>"
             ).replace(
                 "<th>Image</th>",
-                "<th>Team Placement</th><th>Image</th>"  # Add Team Placement column for Skyline page
+                "<th>Team Placement</th><th>Image</th>"
             )
 
-            # Add comments right below the Ann Arbor Skyline header
+            comments_row = data[3]
+            comments = " ".join([comment for comment in comments_row if comment.strip()])
+            skyline_comments.append((meet_name, comments))
+
             skyline_content += f'''
                     <section id="skyline-comments">
                         <p>{comments}</p>
                     </section>
             '''
 
-            skyline_athletes = []  # List to store HTML rows for Ann Arbor Skyline athletes
-            skyline_team_position = 1  # Counter for team placement within Ann Arbor Skyline
+            skyline_athletes = []  
+            skyline_team_position = 1  
 
-            # Start reading from the 7th row (index 6)
             first_row = True
-        
             for row in data[6:]:
                 if len(row) >= 7:
                     if first_row:
@@ -98,11 +162,9 @@ for filename in os.listdir(folder_path):
                     team = row[5]
                     profile_pic = "./AthleteImages/" + row[7]
                     
-                    # Check if the profile picture exists or not
                     if not os.path.isfile(profile_pic): 
                         profile_pic = "./AthleteImages/anonymous.jpg"
 
-                    # Build athlete HTML row for the main meet page (without Team Placement)
                     athlete_row = f'''
                     <tr>
                         <td>{place}</td>
@@ -122,15 +184,13 @@ for filename in os.listdir(folder_path):
                     </tr>
                     '''
 
-                    # Append to main meet content
                     html_content += athlete_row
 
-                    # Append to Ann Arbor Skyline content with team placement if team matches
                     if team == "Ann Arbor Skyline":
                         skyline_athlete_row = f'''
                         <tr>
                             <td>{place}</td>
-                            <td>{skyline_team_position}</td>  <!-- Team Placement Column -->
+                            <td>{skyline_team_position}</td>
                             <td><img src="{profile_pic}" alt="{name}" class="imageform"/></td>
                             <td><a href="{athlete_link}">{name}</a></td>
                             <td>
@@ -141,15 +201,13 @@ for filename in os.listdir(folder_path):
                                     <div class="sumLabel">Team:</div>
                                     <div>{team}</div>
                                     <div class="sumLabel">Time:</div>
-                                    <div>{time}</div>
                                 </details>
                             </td>
                         </tr>
                         '''
                         skyline_athletes.append(skyline_athlete_row)
-                        skyline_team_position += 1  # Increment team placement for each Skyline athlete
+                        skyline_team_position += 1
 
-            # Close the table and HTML tags for the main meet page
             html_content += '''
                             </tbody>
                         </table>
@@ -159,13 +217,10 @@ for filename in os.listdir(folder_path):
             </html>
             '''
 
-            # Write the individual meet page to a file
             with open(sanitized_filename, 'w', encoding='utf-8') as f:
                 f.write(html_content)
 
-            # If there are Ann Arbor Skyline athletes, create a separate page
             if skyline_athletes:
-                # Add each Ann Arbor Skyline athlete to the separate HTML content
                 skyline_content += ''.join(skyline_athletes) + '''
                             </tbody>
                         </table>
@@ -175,12 +230,10 @@ for filename in os.listdir(folder_path):
             </html>
                 '''
 
-                # Write the Ann Arbor Skyline results page to a file
                 skyline_filename = sanitize_filename(f"{meet_name}_ann_arbor_skyline")
                 with open(skyline_filename, 'w', encoding='utf-8') as f:
                     f.write(skyline_content)
 
-# Create a summary HTML page
 summary_content = '''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -195,15 +248,22 @@ summary_content = '''<!DOCTYPE html>
     </header>
     <main>
         <section id="meets-list">
-            <h2>Available Meets</h2>
+            <h2>All Meets</h2>
             <ul>
 '''
 
-# Add each meet to the summary
-for meet_name, link in meet_links:
-    summary_content += f'                <li><a href="{link}">{meet_name}</a></li>\n'
+for meet_name, sanitized_filename in meet_links:
+    summary_content += f'<li><a href="{sanitized_filename}">{meet_name}</a></li>\n'
 
-# Close the HTML tags for the summary page
+summary_content += '''
+            </ul>
+            <h2>Ann Arbor Skyline Comments</h2>
+            <ul>
+'''
+
+for meet_name, comment in skyline_comments:
+    summary_content += f'<li><strong>{meet_name}:</strong> {comment}</li>\n'
+
 summary_content += '''
             </ul>
         </section>
@@ -212,41 +272,5 @@ summary_content += '''
 </html>
 '''
 
-# Write the summary page to a file
 with open('meets_overview.html', 'w', encoding='utf-8') as f:
     f.write(summary_content)
-
-# Create a Skyline Comments page
-comments_content = '''<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Ann Arbor Skyline Comments</title>
-</head>
-<body>
-    <header>
-        <h1>Ann Arbor Skyline Comments</h1>
-    </header>
-    <main>
-        <section id="skyline-comments">
-            <ul>
-'''
-
-# Add each comment to the comments content
-for meet_name, comment in skyline_comments:
-    comments_content += f'<li><strong>{meet_name}:</strong> {comment}</li>\n'
-
-# Close the HTML tags for the comments page
-comments_content += '''
-            </ul>
-        </section>
-    </main>
-</body>
-</html>
-'''
-
-# Write the Skyline comments page to a file
-with open('skyline_comments.html', 'w', encoding='utf-8') as f:
-    f.write(comments_content)
