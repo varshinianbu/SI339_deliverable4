@@ -26,7 +26,7 @@ for filename in os.listdir(folder_path):
             # Get the date
             date = data[1][0]
             
-            # Start building the individual meet HTML structure
+            # Initialize HTML content for the meet page (without Team Placement)
             html_content = f'''<!DOCTYPE html>
             <html lang="en">
             <head>
@@ -47,7 +47,7 @@ for filename in os.listdir(folder_path):
                         <table id="athlete-table">
                             <thead>
                                 <tr>
-                                    <th>Place</th>
+                                    <th>Overall Placement</th>
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Details</th>
@@ -55,6 +55,17 @@ for filename in os.listdir(folder_path):
                             </thead>
                             <tbody>
             '''
+
+            # Initialize content for Ann Arbor Skyline results (with Team Placement)
+            skyline_content = html_content.replace(
+                "<h2>Meet Results</h2>",
+                "<h2>Ann Arbor Skyline Results</h2>"
+            ).replace(
+                "<th>Image</th>",
+                "<th>Team Placement</th><th>Image</th>"  # Add Team Placement column for Skyline page
+            )
+            skyline_athletes = []  # List to store HTML rows for Ann Arbor Skyline athletes
+            skyline_team_position = 1  # Counter for team placement within Ann Arbor Skyline
 
             # Start reading from the 7th row (index 6)
             first_row = True
@@ -65,7 +76,7 @@ for filename in os.listdir(folder_path):
                         first_row = False
                         continue
 
-                    place = row[0]
+                    place = row[0].rstrip('.')
                     grade = row[1]
                     name = row[2]
                     athlete_link = row[3]
@@ -77,8 +88,8 @@ for filename in os.listdir(folder_path):
                     if not os.path.isfile(profile_pic): 
                         profile_pic = "./AthleteImages/anonymous.jpg"
 
-                    # Append each athlete's data to the HTML content
-                    html_content += f'''
+                    # Build athlete HTML row for the main meet page (without Team Placement)
+                    athlete_row = f'''
                     <tr>
                         <td>{place}</td>
                         <td><img src="{profile_pic}" alt="{name}" class="imageform"/></td>
@@ -97,7 +108,34 @@ for filename in os.listdir(folder_path):
                     </tr>
                     '''
 
-            # Close the table and HTML tags
+                    # Append to main meet content
+                    html_content += athlete_row
+
+                    # Append to Ann Arbor Skyline content with team placement if team matches
+                    if team == "Ann Arbor Skyline":
+                        skyline_athlete_row = f'''
+                        <tr>
+                            <td>{place}</td>
+                            <td>{skyline_team_position}</td>  <!-- Team Placement Column -->
+                            <td><img src="{profile_pic}" alt="{name}" class="imageform"/></td>
+                            <td><a href="{athlete_link}">{name}</a></td>
+                            <td>
+                                <details>
+                                    <summary id="ellipsis">...</summary>
+                                    <div class="sumLabel">Grade:</div> 
+                                    <div>{grade}</div>
+                                    <div class="sumLabel">Team:</div>
+                                    <div>{team}</div>
+                                    <div class="sumLabel">Time:</div>
+                                    <div>{time}</div>
+                                </details>
+                            </td>
+                        </tr>
+                        '''
+                        skyline_athletes.append(skyline_athlete_row)
+                        skyline_team_position += 1  # Increment team placement for each Skyline athlete
+
+            # Close the table and HTML tags for the main meet page
             html_content += '''
                             </tbody>
                         </table>
@@ -110,6 +148,23 @@ for filename in os.listdir(folder_path):
             # Write the individual meet page to a file
             with open(sanitized_filename, 'w', encoding='utf-8') as f:
                 f.write(html_content)
+
+            # If there are Ann Arbor Skyline athletes, create a separate page
+            if skyline_athletes:
+                # Add each Ann Arbor Skyline athlete to the separate HTML content
+                skyline_content += ''.join(skyline_athletes) + '''
+                            </tbody>
+                        </table>
+                    </section>
+                </main>
+            </body>
+            </html>
+                '''
+
+                # Write the Ann Arbor Skyline results page to a file
+                skyline_filename = sanitize_filename(f"{meet_name}_ann_arbor_skyline")
+                with open(skyline_filename, 'w', encoding='utf-8') as f:
+                    f.write(skyline_content)
 
 # Create a summary HTML page
 summary_content = '''<!DOCTYPE html>
