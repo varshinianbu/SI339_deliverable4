@@ -1,6 +1,6 @@
 /* General text and header styling */
 header, body, h1, h2, #Home, ul a, #athlete-table td a, #athlete-table th {
-    font-family: 'Didot', sans-serif;
+    font-family: 'times new roman', sans-serif;
     color: #000000;
 }
 
