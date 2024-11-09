@@ -44,6 +44,7 @@ for filename in os.listdir(folder_path):
                     <a href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
                     <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
                     <a href="{sanitize_filename(meet_name + '_team_placements')}"><button>Team Placements</button></a>
+                    <a href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button>Skyline Gallery</button></a>
                 </header>
                 <main>
                     <section id="meet-results">
@@ -76,6 +77,7 @@ for filename in os.listdir(folder_path):
                     <a href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
                     <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
                     <a href="{sanitize_filename(meet_name + '_team_placements')}"><button>Team Placements</button></a>
+                    <a href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button>Skyline Gallery</button></a>
                 </header>
                 <main>
                     <section id="team-placements">
@@ -234,6 +236,53 @@ for filename in os.listdir(folder_path):
                 with open(skyline_filename, 'w', encoding='utf-8') as f:
                     f.write(skyline_content)
 
+            # Create a page with only Skyline student images for CSS grid styling
+            skyline_images_content = f'''<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="css/style.css">
+                <title>{meet_name} Skyline Student Gallery</title>
+            </head>
+            <body>
+                <header class="header" id="myHeader">
+                    <h1>{meet_name} Skyline Student Gallery</h1>
+                    <a href="meets_overview.html"><button id="Home">Home</button></a>
+                    <a href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
+                    <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
+                    <a href="{sanitize_filename(meet_name + '_team_placements')}"><button>Team Placements</button></a>
+                    <a href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button>Skyline Gallery</button></a>
+                </header>
+                <main>
+                    <section id="skyline-gallery" class="gallery">
+            '''
+
+            # Add images of each Skyline student
+            for row in data[6:]:
+                if len(row) >= 7 and row[5] == "Ann Arbor Skyline":
+                    profile_pic = "./AthleteImages/" + row[7]
+                    if not os.path.isfile(profile_pic): 
+                        profile_pic = "./AthleteImages/anonymous.jpg"
+                    skyline_images_content += f'''
+                        <div class="gallery-item">
+                            <img src="{profile_pic}" alt="{row[2]}" class="gallery-image">
+                        </div>
+                    '''
+
+            skyline_images_content += '''
+                    </section>
+                </main>
+            </body>
+            </html>
+            '''
+
+            # Write the Skyline student gallery page to a file
+            skyline_gallery_filename = sanitize_filename(f"{meet_name}_skyline_gallery")
+            with open(skyline_gallery_filename, 'w', encoding='utf-8') as f:
+                f.write(skyline_images_content)
+
+# Create a summary HTML page
 summary_content = '''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -252,9 +301,11 @@ summary_content = '''<!DOCTYPE html>
             <ul>
 '''
 
+# Add links to all meets
 for meet_name, sanitized_filename in meet_links:
     summary_content += f'<li><a href="{sanitized_filename}">{meet_name}</a></li>\n'
 
+# Add comments for Ann Arbor Skyline
 summary_content += '''
             </ul>
             <h2>Ann Arbor Skyline Comments</h2>
