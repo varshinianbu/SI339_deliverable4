@@ -4,7 +4,7 @@ header, body, h1, h2, #Home, ul a, #athlete-table td a, #athlete-table th {
     color: #000000;
 }
 
-/* Header styling with padding and border */
+/* Header styling with padding and bottom border */
 header {
     padding: 5px 5px 5px 0px;
     text-align: center;
@@ -12,9 +12,12 @@ header {
     border-bottom: 2px solid #5b8fba;
 }
 
-/* Body background color */
+/* Body background color and reset for padding/margins */
 body {
     background-color: #a3ccee;
+    margin: 0;
+    padding: 0;
+    font-size: 0.75em;
 }
 
 /* Sticky header to stay at the top when scrolling */
@@ -28,17 +31,17 @@ h1, h2, summary {
     font-size: 1.75em;
 }
 
-/* Link styling for general links excluding Home button */
+/* General link styling for main links, Home button, and ellipsis */
 ul a, #athlete-table td a, #Home, #ellipsis, #meets-list a {
     text-decoration: none;
     font-weight: bold;
     display: block;
     padding: 5px;
-    transition: background-color 0.1s ease-in-out, transform 0.1s ease-in-out, opacity 0.7s ease-in-out;
     font-size: 1.25em;
+    transition: background-color 0.1s ease-in-out, transform 0.1s ease-in-out, opacity 0.7s ease-in-out;
 }
 
-/* Styling for Home button */
+/* Specific styling for the Home button */
 #Home {
     border: none;
     border-radius: 5px;
@@ -46,35 +49,23 @@ ul a, #athlete-table td a, #Home, #ellipsis, #meets-list a {
     cursor: pointer;
     text-align: center;
     display: inline;
-    transition: #5a8cc0 0.1s ease-in-out, transform 0.1s ease-in-out;
 }
 
-/* Home button hover effect */
-#Home:hover {
-    background-color: #5a8cc0;
-    transform: scale(1.0);
-}
-
-/* Remove transition on Home button when active/focused */
-#Home:focus, #Home:active {
-    transition: none;
-}
-
-/* Styling for focused or active links */
-ul a:focus, ul a:active, #athlete-table td a:focus, #athlete-table td a:active, #elipsis:focus, #elipsis:active {
+/* Hover, focus, and active states for links and Home button */
+#Home:hover, ul a:hover, #athlete-table td a:hover, #ellipsis:hover {
     background-color: #bcdaf3;
+    transform: scale(1.0);
+    border-radius: 5px;
+}
+
+/* Styling for focused and active states to enhance accessibility with light blue */
+#Home:focus, #Home:active, ul a:focus, ul a:active, #athlete-table td a:focus, #athlete-table td a:active, #ellipsis:focus, #ellipsis:active {
+    background-color: #a3ccee; /* Light blue for focus */
     transform: scale(1.0);
     opacity: 0.8;
 }
 
-/* Hover styling for links */
-ul a:hover, #athlete-table td a:hover, #ellipsis:hover {
-    background-color: #bcdaf3;
-    transform: scale(1.2);
-    border-radius: 5px;
-}
-
-/* Styling for meets overview section */
+/* Container styling for sections like meets list and meet results */
 #meets-list, #meet-results {
     padding: 20px;
     margin: 0 auto;
@@ -84,43 +75,43 @@ ul a:hover, #athlete-table td a:hover, #ellipsis:hover {
     text-align: center;
 }
 
-/* Unordered list styling */
+/* Unordered list styling for a clean layout */
 ul {
     list-style-type: none;
     padding: 0;
 }
 
-/* Styling for list items */
+/* Styling for list items with border and padding */
 li {
     padding: 10px 15px;
     border-bottom: 1px solid #e0e0e0;
 }
 
-/* Remove border for the last list item */
+/* Remove the border for the last list item */
 li:last-child {
     border-bottom: none;
 }
 
-/* Athlete table layout and border styling */
+/* Styling for the athlete table */
 #athlete-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse; /* Remove gaps between table cells */
 }
 
-/* Positioning and alignment for table headers */
+/* Table headers alignment */
 #athlete-table th {
     top: 0;
     z-index: 2;
     text-align: left;
 }
 
-/* Border and padding for table cells */
+/* Border and padding for table headers and cells */
 #athlete-table th, #athlete-table td {
     border: 1px solid #ccc;
     padding: 10px;
 }
 
-/* Alternating row colors in table body */
+/* Alternating row colors for readability */
 tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
@@ -129,16 +120,9 @@ tbody tr:nth-child(odd) {
     background-color: #ffffff;
 }
 
-/* General image styling for maintaining aspect ratio */
+/* General image styling to maintain aspect ratio */
 img {
     height: auto;
-}
-
-/* Body padding and margin reset with font size adjustment */
-body {
-    margin: 0;
-    padding: 0;
-    font-size: 0.75em;
 }
 
 /* Font size for details element */
@@ -146,12 +130,12 @@ details {
     font-size: 1.15em;
 }
 
-/* Styling for bold labels in summary */
+/* Styling for bold labels within the summary tag */
 .sumLabel {
     font-weight: bold;
 }
 
-/* Ellipsis styling */
+/* Ellipsis styling for text overflow indication */
 #ellipsis {
     display: inline-block;
 }
@@ -161,17 +145,15 @@ details {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #ccc;
+    border: 1px solid #ccc;
 }
 
-/* Remove default marker for summary */
+/* Remove the default marker for summary element */
 summary::-webkit-details-marker {
     display: none;
 }
 
-/* Dark mode styling */
+/* Dark mode styling for users with dark mode preference */
 @media (prefers-color-scheme: dark) {
     /* Dark mode colors for text and header */
     header, body, h1, h2, #Home, ul a, #athlete-table td a, #athlete-table th {
@@ -186,26 +168,18 @@ summary::-webkit-details-marker {
     }
     
     /* Background color adjustments for dark mode */
-    body, #meets-list, #meet-result, tbody tr:nth-child(even), tbody tr:nth-child(odd) #ellipsis:hover,
-    #athlete-table tbody tr:nth-child(odd) td a:hover {
+    body, #meets-list, #meet-results {
         background-color: #3a3a3a;
     }
-    
-    /* Background color for focused/active links in dark mode */
-    ul a:focus, ul a:active, #athlete-table td a:focus, #athlete-table td a:active, 
-    #elipsis:focus, #elipsis:active, #Home {
-        background-color: #56616a;
+
+    /* Dark mode for focus and active states with lighter color */
+    #Home:focus, #Home:active, ul a:focus, ul a:active, #athlete-table td a:focus, #athlete-table td a:active, #ellipsis:focus, #ellipsis:active {
+        background-color: #4a90d9; /* Lighter blue for dark mode focus */
     }
     
-    /* Hover effect for links in dark mode */
-    ul a:hover, #athlete-table td a:hover, #ellipsis:hover {
+    /* Dark mode hover effect */
+    ul a:hover, #athlete-table td a:hover, #ellipsis:hover, #Home:hover {
         background-color: #72767a;
-        border-radius: 5px;
-    }
-    
-    /* Meets list background in dark mode */
-    #meets-list, #meet-results {
-        background-color: #606060;
     }
     
     /* Dark mode border styling for list items */
@@ -213,63 +187,32 @@ summary::-webkit-details-marker {
         border-bottom: 1px solid #5a5959;
     }
     
-    /* Home button hover in dark mode */
-    #Home:hover {
-        background-color: #1f2f41;
-    }
-    
-    /* Dark mode alternating row colors */
+    /* Alternating row colors for dark mode */
     tbody tr:nth-child(odd) {
         background-color: #4a4a4a;
     }
 
-    /* Dark mode border for table cells */
+    /* Dark mode borders for table cells */
     #athlete-table th, #athlete-table td {
         border: 1px solid #000000;
     }
 }
 
-/* Reduced motion preferences */
+/* Reduced motion preferences for users with reduced motion setting */
 @media (prefers-reduced-motion: reduce) {
-    /* Remove animations and visual feedback for links and Home button */
-    ul a, #athlete-table td a, #Home, #ellipsis, #meets-list a, #Home:hover,
-    ul a:hover, #athlete-table td a:hover, #ellipsis:hover, #Home:focus, ul a:focus, ul a:active, 
-    #athlete-table td a:focus, #athlete-table td a:active, #elipsis:focus, #elipsis:active {
+    /* Remove animations and transitions for links and Home button */
+    ul a, #athlete-table td a, #Home, #ellipsis, #meets-list a {
         transition: none;
         background-color: transparent;
         color: inherit;
         transform: none;
         text-decoration: underline;
-        outline: none; /* Remove focus outline */
+        outline: none;
         -webkit-tap-highlight-color: transparent; /* Disable mobile touch highlight */
     }
-    
-    /* Styling for Home button in reduced motion mode */
-    #Home, #Home:hover {
-        background-color: #ffffff;
-        color: #000000;
-        outline: none;
-        -webkit-tap-highlight-color: transparent;
-    }
 
-    /* Hover effect removal for table rows in reduced motion mode */
+    /* Remove hover effect for table rows in reduced motion mode */
     tbody tr:hover {
         background-color: inherit;
-    }
-
-    /* Default alternating row colors for even rows */
-    tbody tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    /* Dark mode alternating row colors in reduced motion */
-    @media (prefers-color-scheme: dark) {
-        tbody tr:nth-child(even) {
-            background-color: #3a3a3a;
-        }
-        tbody tr:nth-child(odd), tr:nth-child(odd), #athlete-table tbody tr:nth-child(odd) td a:hover,
-        tbody tr:nth-child(odd) #ellipsis:hover {
-            background-color: #4a4a4a;
-        }
     }
 }

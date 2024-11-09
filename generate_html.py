@@ -312,23 +312,5 @@ summary_content = '''<!DOCTYPE html>
 for meet_name, sanitized_filename in meet_links:
     summary_content += f'<li><a href="{sanitized_filename}">{meet_name}</a></li>\n'
 
-# Add comments for Ann Arbor Skyline
-summary_content += '''
-            </ul>
-            <h2>Ann Arbor Skyline Comments</h2>
-            <ul>
-'''
-
-for meet_name, comment in skyline_comments:
-    summary_content += f'<li><strong>{meet_name}:</strong> {comment}</li>\n'
-
-summary_content += '''
-            </ul>
-        </section>
-    </main>
-</body>
-</html>
-'''
-
 with open('meets_overview.html', 'w', encoding='utf-8') as f:
     f.write(summary_content)
