@@ -4,6 +4,7 @@ import re
 
 folder_path = './meets'
 meet_links = []  # List to store meet names and links
+skyline_comments = []  # List to store comments about Ann Arbor Skyline
 
 # Helper function to generate valid filenames
 def sanitize_filename(name):
@@ -26,6 +27,11 @@ for filename in os.listdir(folder_path):
             # Get the date
             date = data[1][0]
             
+            # Collect Ann Arbor Skyline comments from row 4
+            comments_row = data[3]  # Row 4 in the CSV (index 3)
+            comments = " ".join([comment for comment in comments_row if comment.strip()])
+            skyline_comments.append((meet_name, comments))
+
             # Initialize HTML content for the meet page (without Team Placement)
             html_content = f'''<!DOCTYPE html>
             <html lang="en">
@@ -201,3 +207,38 @@ summary_content += '''
 # Write the summary page to a file
 with open('meets_overview.html', 'w', encoding='utf-8') as f:
     f.write(summary_content)
+
+# Create a Skyline Comments page
+comments_content = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ann Arbor Skyline Comments</title>
+</head>
+<body>
+    <header>
+        <h1>Ann Arbor Skyline Comments</h1>
+    </header>
+    <main>
+        <section id="skyline-comments">
+            <ul>
+'''
+
+# Add each comment to the comments content
+for meet_name, comment in skyline_comments:
+    comments_content += f'<li><strong>{meet_name}:</strong> {comment}</li>\n'
+
+# Close the HTML tags for the comments page
+comments_content += '''
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
+'''
+
+# Write the Skyline comments page to a file
+with open('skyline_comments.html', 'w', encoding='utf-8') as f:
+    f.write(comments_content)
