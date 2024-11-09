@@ -94,12 +94,18 @@ for filename in os.listdir(folder_path):
             '''
 
             # Start reading from row 7 (index 6)
+            first_row = True
             for row in data[6:]:
                 if len(row) < 3:
                     continue
                 
                 if len(row) >= 3 and row[0] == "Place" and row[1] == "Grade" and row[2] == "Name":
                     break  
+
+                # Skip the header row for team placements
+                if first_row:
+                    first_row = False
+                    continue
                 
                 if len(row) >= 3:
                     place = row[0].rstrip('.')
