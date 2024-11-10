@@ -72,7 +72,8 @@ for filename in os.listdir(folder_path):
             </head>
             <body>
                 <header class="header" id="myHeader">
-                    <h1>{meet_name} Team Placements</h1>
+                    <h1>{meet_name}</h1>
+                    <h2>{date}</h2>
                     <a href="meets_overview.html"><button id="Home">Home</button></a>
                     <a href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
                     <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
@@ -248,12 +249,14 @@ for filename in os.listdir(folder_path):
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link href="dist/css/lightbox.css" rel="stylesheet" />
                 <link rel="stylesheet" href="css/style.css">
                 <title>{meet_name} Skyline Student Gallery</title>
             </head>
             <body>
                 <header class="header" id="myHeader">
-                    <h1>{meet_name} Skyline Student Gallery</h1>
+                    <h1>{meet_name}</h1>
+                    <h2>{date}</h2>
                     <a href="meets_overview.html"><button id="Home">Home</button></a>
                     <a href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
                     <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
@@ -275,13 +278,16 @@ for filename in os.listdir(folder_path):
                     
                     skyline_images_content += f'''
                         <div class="gallery-item">
-                            <img src="{profile_pic}" alt="{row[2]}" class="gallery-image">
+                            <a href="{profile_pic}" data-lightbox="skyline-gallery" data-title="{row[2]}" data-alt="{row[2]}">
+                                <img src="{profile_pic}" alt="{row[2]}" class="gallery-image">
+                            </a>
                         </div>
                     '''
 
             skyline_images_content += '''
                     </section>
                 </main>
+                <script src="dist/js/lightbox-plus-jquery.js"></script>
             </body>
             </html>
             '''
