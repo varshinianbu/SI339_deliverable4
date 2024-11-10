@@ -19,6 +19,7 @@ body {
     padding: 0;
 }
 
+/* Paragraph padding for spacing */
 p {
     padding: 0px 0px 30px 0px;
 }
@@ -29,24 +30,28 @@ p {
     top: 0;
 }
 
+/* Font size for main headings */
 h1 {
     font-size: 1.75em;
 }
 
+/* Font size for subheadings */
 h2 {
     font-size: 1.5em;
 }
 
-/* Font size for headings and summary elements */
+/* Font size summary elements */
 summary, p, #meets-list a, #meet-results h2{
     font-size: 1.25em;
 }
 
+/* Font size for table headers and cells */
 #athlete-table th, #athlete-table td, header button, #searchLabel {
     font-size: 1em; 
     font-weight: bold;
 }
 
+/* Buttom underline removal */
 header a, header button a {
     text-decoration: none;
 }
@@ -59,6 +64,7 @@ ul a, #athlete-table td a, #ellipsis, #meets-list a, header button {
     transition: background-color 0.1s ease-in-out, transform 0.1s ease-in-out, opacity 0.7s ease-in-out;
 }
 
+/* Header Button Styling */
 header button  {
     border: none;
     border-radius: 5px;
@@ -123,6 +129,7 @@ li:last-child {
     padding: 10px;
 }
 
+/* Styling for the active button in header */
 .active, #searchLabel {
     background-color: #80b9e7;
 }
@@ -132,6 +139,7 @@ tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
+/* Alternating row colors for readability */
 tbody tr:nth-child(odd) {
     background-color: #ffffff;
 }
@@ -189,34 +197,40 @@ details {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Slightly larger shadow for emphasis */
 }
 
+/* Hiding certain objects in mobile view */
 .skyline-table th:nth-child(1), .skyline-table td:nth-child(1), #athlete-table th:last-child, 
-#athlete-table td:last-child, .active, #sky-r { 
+#athlete-table td:last-child, .active, #sky-r, #darkmodeimg { 
         display: none;
 }
 
+/* Search container styling */
 #search-container {
     display: flex;
     justify-content: center;
     padding: 20px 0;
 }
 
+/* Search input and label styling */
 #search {
     display: flex;
     gap: 10px; /* Space between label and input */
     align-items: center;
 }
 
+/* Search input styling */
 #searchInput, #searchLabel {
     padding: 8px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
+/* Search input styling for search container width */
 #searchInput {
     width: 300px; /* Fixed width for input to keep it consistent */
     font-size: 1em;
 }
 
+/* Styling for header image */
 #lightmodeimg, #darkmodeimg {
     width: 150px;
     height: 150px;
@@ -225,27 +239,32 @@ details {
    
 }
 
-#darkmodeimg {
+/* Remove the default marker for summary element */
+summary::-webkit-details-marker {
     display: none;
 }
 
 /* Media query for table*/
 @media (min-width: 720px) {
 
+    /* Increase search input width on desktop/tablet */
     #searchInput {
         width: 400px;
     }
 
+    /* Increase the gallery image size for desktop */
     .gallery-image {
         width: 300px; 
         height: 300px;
     }
 
+    /* Show hidden objects in tablet/desktop view */
     .skyline-table th:nth-child(1), .skyline-table td:nth-child(1), #athlete-table th:last-child, 
     #athlete-table td:last-child, .active, #sky-r { 
         display: table-cell;
     }
 
+    /* Change animatons for hover and focus states on larger screens to be more intutive */
     ul a:hover, #athlete-table td a:hover, #ellipsis:hover, ul a:focus, ul a:active, #athlete-table td a:focus, 
     #athlete-table td a:active, #ellipsis:focus, #ellipsis:active, header button:hover, header button:focus, header button:active {
         transform: scale(1.0); 
@@ -255,6 +274,7 @@ details {
         transition: none; 
     }
 
+    /* Modify grid layout */
     #skyline-gallery {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -263,22 +283,18 @@ details {
 /* Media query for desktop*/
 @media (min-width: 1024px) {
 
+    /* Change the position of the Home button on desktop screens */
     #Home {
         position:absolute;
         top: 10px;
         right: 10px;
     }
 
+    /* Modify grid layout for larger screens */
     #skyline-gallery {
         grid-template-columns: repeat(3, 1fr);
     }
 }
-
-/* Remove the default marker for summary element */
-summary::-webkit-details-marker {
-    display: none;
-}
-
 /* Dark mode styling for users with dark mode preference */
 @media (prefers-color-scheme: dark) {
     /* Dark mode colors for text and header */
@@ -291,6 +307,8 @@ summary::-webkit-details-marker {
         background-color: #334c5f;
         border: 2px solid #304a5f;
     }
+
+    /* Dark mode active button indication color */
     .active {
         background-color: #566b82;
     }
@@ -300,6 +318,7 @@ summary::-webkit-details-marker {
         background-color: #3a3a3a;
     }
 
+    /* Dark mode button color styling */
     header button:hover, header button:focus {
         background-color: #6f7b89; 
     }
@@ -330,10 +349,12 @@ summary::-webkit-details-marker {
         border: 1px solid #797777;
     }
 
+    /* Hide light mode image in dark mode */
     #lightmodeimg {
         display: none;
     }
 
+    /* Show dark mode image in dark mode */
     #darkmodeimg {
         display: inline;
     }
@@ -354,6 +375,7 @@ summary::-webkit-details-marker {
         -webkit-tap-highlight-color: transparent; /* Disable mobile touch highlight */
     }
 
+    /* Remove background color for links and Home button */
     ul a, #athlete-table td a, #ellipsis, #meets-list a, ul a:hover, #athlete-table td a:hover, 
     #ellipsis:hover, #Home:focus, ul a:focus, ul a:active, header button:focus,
     #athlete-table td a:focus, #athlete-table td a:active, #elipsis:focus, #elipsis:active, .active {
@@ -387,20 +409,26 @@ summary::-webkit-details-marker {
         filter: none !important;
     }
 
+    /* Remove background color for lightbox elements */
     .lightbox, .lb-outerContainer, .lb-nav a.lb-prev, .lb-nav a.lb-next, .lb-data .lb-close, .lb-nav a.lb-prev:hover,
     .lb-nav a.lb-next:hover, .lb-data .lb-close:hover, .lb-image,  .lb-prev, .lb-next, .lb-close {
         background-color: transparent !important;
     }
 
+    /* Dark mode background color for lightbox elements */
     .lightbox, .lightboxOverlay, .lb-outerContainer, .lb-image {
         background-color:rgb(0 0 0 / 50%);
     }
     
     /* Dark mode alternating row colors in reduced motion */
     @media (prefers-color-scheme: dark) {
+        
+        /* Dark mode colors for prefer reduced motion */
         tbody tr:nth-child(even) {
             background-color: #3a3a3a;
         }
+
+        /* Dark mode colors for prefer reduced motion */
         tbody tr:nth-child(odd), tr:nth-child(odd), #athlete-table tbody tr:nth-child(odd) td a:hover,
         tbody tr:nth-child(odd) #ellipsis:hover {
             background-color: #4a4a4a;
