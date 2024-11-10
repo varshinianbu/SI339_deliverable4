@@ -142,6 +142,15 @@ for filename in os.listdir(folder_path):
             ).replace(
                 "<th>Image</th>",
                 "<th>Team Placement</th><th>Image</th>"
+            ).replace(
+                '<button>Skyline Results</button></a>',
+                '<button class="active">Skyline Results</button></a>'
+            ).replace(
+                '<button class="active">Meet Results</button></a>',
+                '<button>Meet Results</button></a>'
+            ).replace(
+                '<table id="athlete-table">',
+                '<table id="athlete-table" class="skyline-table">'
             )
 
             comments_row = data[3]
