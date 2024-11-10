@@ -49,10 +49,12 @@ for filename in os.listdir(folder_path):
                 <main>
                     <section id="meet-results">
                         <h2>Meet Results</h2>
-                        <section id="search">
-                            <label for="searchInput" id="searchLabel">Search Athletes:</label>
-                            <input type="text" id="searchInput" placeholder="Search by name...">
-                        </section>
+                        <div id="search-container">
+                            <section id="search">
+                                <label for="searchInput" id="searchLabel">Search Athletes:</label>
+                                <input type="text" id="searchInput" placeholder="Search by name...">
+                            </section>
+                        </div>
                         <table id="athlete-table">
                             <thead>
                                 <tr>
@@ -120,7 +122,7 @@ for filename in os.listdir(folder_path):
                     team_row = f'''
                     <tr>
                         <td>{place}</td>
-                        <td>{team}</td>
+                        <td tabindex="0">{team}</td>
                         <td>{score}</td>
                     </tr>
                     '''
@@ -324,6 +326,8 @@ summary_content = '''<!DOCTYPE html>
 <body>
     <header>
         <h1>Meets Overview</h1>
+        <img src="runninglight.png" alt="Running Light" id = "lightmodeimg">
+        <img src="runningdark.png" alt="Running Dark" id = "darkmodeimg">
     </header>
     <main>
         <section id="meets-list">
