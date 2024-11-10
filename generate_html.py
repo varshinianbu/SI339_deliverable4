@@ -41,10 +41,10 @@ for filename in os.listdir(folder_path):
                     <h1>{meet_name}</h1>
                     <h2>{date}</h2>
                     <a href="meets_overview.html"><button id="Home">Home</button></a>
-                    <a href="{sanitize_filename(meet_name)}"><button class="active">Meet Results</button></a>
-                    <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
-                    <a href="{sanitize_filename(meet_name + '_team_placements')}"><button id = "sky-r">Team Placements</button></a>
-                    <a href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button>Skyline Gallery</button></a>
+                    <a aria-label="Meet Results" href="{sanitize_filename(meet_name)}"><button class="active">Meet Results</button></a>
+                    <a aria-label="Skyline Results" href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
+                    <a aria-label="Team Placements" href="{sanitize_filename(meet_name + '_team_placements')}"><button id = "sky-r">Team Placements</button></a>
+                    <a aria-label="Skyline Gallery" href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button>Skyline Gallery</button></a>
                 </header>
                 <main>
                     <section id="meet-results">
@@ -81,10 +81,10 @@ for filename in os.listdir(folder_path):
                     <h1>{meet_name}</h1>
                     <h2>{date}</h2>
                     <a href="meets_overview.html"><button id="Home">Home</button></a>
-                    <a href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
-                    <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
-                    <a href="{sanitize_filename(meet_name + '_team_placements')}"><button id = "sky-r" class="active">Team Placements</button></a>
-                    <a href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button>Skyline Gallery</button></a>
+                    <a aria-label="Meet Results" href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
+                    <a aria-label="Skyline Results" href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
+                    <a aria-label="Team Placement" href="{sanitize_filename(meet_name + '_team_placements')}"><button id = "sky-r" class="active">Team Placements</button></a>
+                    <a aria-label="Skyline Gallery" href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button>Skyline Gallery</button></a>
                 </header>
                 <main>
                     <section id="meet-results" class="meet-results">
@@ -275,10 +275,10 @@ for filename in os.listdir(folder_path):
                     <h1>{meet_name}</h1>
                     <h2>{date}</h2>
                     <a href="meets_overview.html"><button id="Home">Home</button></a>
-                    <a href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
-                    <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
-                    <a href="{sanitize_filename(meet_name + '_team_placements')}"><button id = "sky-r">Team Placements</button></a>
-                    <a href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button class="active">Skyline Gallery</button></a>
+                    <a aria-label="Meet Results" href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
+                    <a aria-label="Skyline Results" href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
+                    <a aria-label="Team Placement" href="{sanitize_filename(meet_name + '_team_placements')}"><button id = "sky-r">Team Placements</button></a>
+                    <a aria-label="Skyline Gallery" href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button class="active">Skyline Gallery</button></a>
                 </header>
                 <main>
                     <section id="skyline-gallery" class="gallery">

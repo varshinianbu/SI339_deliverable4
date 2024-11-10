@@ -67,21 +67,6 @@ header button  {
     display: inline;
 }
 
-/* #Home {
-    position:absolute;
-    top: 10px;
-    right: 10px;
-} */
-
-/* Styling for focused and active states to enhance accessibility with light blue */
-/* ul a:hover, #athlete-table td a:hover, #ellipsis:hover, ul a:focus, ul a:active, #athlete-table td a:focus, 
-#athlete-table td a:active, #ellipsis:focus, #ellipsis:active, header button:hover, header button:focus, header button:active {
-    background-color: #a3ccee;
-    transform: scale(1.0);
-    border-radius: 5px;
-    opacity: 0.8;
-} */
-
 /* Styling for focused and active states to enhance accessibility with a pop-out effect */
 ul a:hover, #athlete-table td a:hover, #ellipsis:hover, ul a:focus, ul a:active, #athlete-table td a:focus, 
 #athlete-table td a:active, #ellipsis:focus, #ellipsis:active, header button:hover, header button:focus, header button:active {
@@ -298,20 +283,26 @@ summary::-webkit-details-marker {
 /* Dark mode styling for users with dark mode preference */
 @media (prefers-color-scheme: dark) {
     /* Dark mode colors for text and header */
-    header, body, h1, h2, #Home, ul a, #athlete-table td a, #athlete-table th {
-        font-family: 'Didot', sans-serif;
+    header, body, h1, h2, ul a, #athlete-table td a, #athlete-table th, #searchLabel, .active {
         color: #ffffff;
     }
     
     /* Dark mode header background and border */
-    header {
+    header, #searchLabel {
         background-color: #334c5f;
-        border-bottom: 2px solid #304a5f;
+        border: 2px solid #304a5f;
     }
-    
+    .active {
+        background-color: #566b82;
+    }
+
     /* Background color adjustments for dark mode */
-    body, #meets-list, #meet-results {
+    body, #meets-list, #meet-results,tbody tr:nth-child(even) {
         background-color: #3a3a3a;
+    }
+
+    header button:hover, header button:focus {
+        background-color: #6f7b89; 
     }
 
     /* Dark mode for focus and active states with lighter color */
@@ -337,7 +328,7 @@ summary::-webkit-details-marker {
 
     /* Dark mode borders for table cells */
     #athlete-table th, #athlete-table td {
-        border: 1px solid #000000;
+        border: 1px solid #797777;
     }
 
     #lightmodeimg {
