@@ -340,21 +340,52 @@ summary::-webkit-details-marker {
     }
 }
 
-/* Reduced motion preferences for users with reduced motion setting */
 @media (prefers-reduced-motion: reduce) {
-    /* Remove animations and transitions for links and Home button */
-    ul a, #athlete-table td a, #Home, #ellipsis, #meets-list a {
+    /* Remove animations and visual feedback for links and Home button */
+    ul a, #athlete-table td a, #Home, #ellipsis, #meets-list a, #Home:hover,
+    ul a:hover, #athlete-table td a:hover, #ellipsis:hover, #Home:focus, ul a:focus, ul a:active, 
+    #athlete-table td a:focus, #athlete-table td a:active, #elipsis:focus, #elipsis:active, header button:hover, header button:focus, 
+    header button:active, header button {
         transition: none;
-        background-color: transparent;
-        color: inherit;
         transform: none;
+        box-shadow: none;
         text-decoration: underline;
-        outline: none;
+        opacity: 1;
+        outline: none; /* Remove focus outline */
         -webkit-tap-highlight-color: transparent; /* Disable mobile touch highlight */
     }
 
-    /* Remove hover effect for table rows in reduced motion mode */
+    ul a, #athlete-table td a, #ellipsis, #meets-list a, ul a:hover, #athlete-table td a:hover, 
+    #ellipsis:hover, #Home:focus, ul a:focus, ul a:active, header button:focus,
+    #athlete-table td a:focus, #athlete-table td a:active, #elipsis:focus, #elipsis:active, .active {
+        background-color: transparent;
+        color: inherit;
+    }
+    
+    /* Styling for Home button in reduced motion mode */
+    #Home, #Home:hover, header button:hover, header button:active, header button:hover, .active {
+        background-color: #f2f2f2;
+        color: #000000;
+    }
+
+    /* Hover effect removal for table rows in reduced motion mode */
     tbody tr:hover {
         background-color: inherit;
+    }
+
+    /* Default alternating row colors for even rows */
+    tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    /* Dark mode alternating row colors in reduced motion */
+    @media (prefers-color-scheme: dark) {
+        tbody tr:nth-child(even) {
+            background-color: #3a3a3a;
+        }
+        tbody tr:nth-child(odd), tr:nth-child(odd), #athlete-table tbody tr:nth-child(odd) td a:hover,
+        tbody tr:nth-child(odd) #ellipsis:hover {
+            background-color: #4a4a4a;
+        }
     }
 }
