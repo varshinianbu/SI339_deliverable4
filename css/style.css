@@ -63,11 +63,11 @@ header button  {
     display: inline;
 }
 
-#Home {
+/* #Home {
     position:absolute;
     top: 10px;
     right: 10px;
-}
+} */
 
 /* Styling for focused and active states to enhance accessibility with light blue */
 ul a:hover, #athlete-table td a:hover, #ellipsis:hover, ul a:focus, ul a:active, #athlete-table td a:focus, 
@@ -168,7 +168,7 @@ details {
 /* Skyline gallery grid styling */
 #skyline-gallery {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+    grid-template-columns: repeat(1, 1fr); /* 1 item per row */
     gap: 30px; /* Increase the gap for more spacing */
     padding: 20px;
     justify-content: center; /* Centers the grid */
@@ -188,6 +188,35 @@ details {
     object-fit: cover; /* Ensures the image covers the area without distortion */
     border-radius: 10px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Slightly larger shadow for emphasis */
+}
+
+.skyline-table th:nth-child(1), .skyline-table td:nth-child(1), #athlete-table th:last-child, #athlete-table td:last-child, .active{ 
+        display: none;
+}
+
+/* Media query for table*/
+@media (min-width: 720px) {
+    #Home {
+        position:absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .skyline-table th:nth-child(1), .skyline-table td:nth-child(1), #athlete-table th:last-child, 
+    #athlete-table td:last-child, .active { 
+        display: table-cell;
+    }
+
+    #skyline-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Media query for desktop*/
+@media (min-width: 1024px) {
+    #skyline-gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 /* Remove the default marker for summary element */
@@ -215,7 +244,8 @@ summary::-webkit-details-marker {
     }
 
     /* Dark mode for focus and active states with lighter color */
-    #Home:focus, #Home:active, ul a:focus, ul a:active, #athlete-table td a:focus, #athlete-table td a:active, #ellipsis:focus, #ellipsis:active {
+    #Home:focus, #Home:active, ul a:focus, ul a:active, #athlete-table td a:focus, #athlete-table td a:active, 
+    #ellipsis:focus, #ellipsis:active {
         background-color: #4a90d9; /* Lighter blue for dark mode focus */
     }
     
