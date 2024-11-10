@@ -264,6 +264,15 @@ summary::-webkit-details-marker {
         display: table-cell;
     }
 
+    /* Modify grid layout */
+    #skyline-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Media query for desktop*/
+@media (min-width: 1024px) {
+
     /* Change animatons for hover and focus states on larger screens to be more intutive */
     ul a:hover, #athlete-table td a:hover, #ellipsis:hover, ul a:focus, ul a:active, #athlete-table td a:focus, 
     #athlete-table td a:active, #ellipsis:focus, #ellipsis:active, header button:hover, header button:focus, header button:active {
@@ -273,15 +282,6 @@ summary::-webkit-details-marker {
         opacity: 0.8; 
         transition: none; 
     }
-
-    /* Modify grid layout */
-    #skyline-gallery {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Media query for desktop*/
-@media (min-width: 1024px) {
 
     /* Change the position of the Home button on desktop screens */
     #Home {
@@ -422,7 +422,7 @@ summary::-webkit-details-marker {
     
     /* Dark mode alternating row colors in reduced motion */
     @media (prefers-color-scheme: dark) {
-        
+
         /* Dark mode colors for prefer reduced motion */
         tbody tr:nth-child(even) {
             background-color: #3a3a3a;
