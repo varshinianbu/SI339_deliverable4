@@ -43,7 +43,7 @@ for filename in os.listdir(folder_path):
                     <a href="meets_overview.html"><button id="Home">Home</button></a>
                     <a href="{sanitize_filename(meet_name)}"><button class="active">Meet Results</button></a>
                     <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
-                    <a href="{sanitize_filename(meet_name + '_team_placements')}"><button>Team Placements</button></a>
+                    <a href="{sanitize_filename(meet_name + '_team_placements')}"><button id = "sky-r">Team Placements</button></a>
                     <a href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button>Skyline Gallery</button></a>
                 </header>
                 <main>
@@ -77,7 +77,7 @@ for filename in os.listdir(folder_path):
                     <a href="meets_overview.html"><button id="Home">Home</button></a>
                     <a href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
                     <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
-                    <a href="{sanitize_filename(meet_name + '_team_placements')}"><button class="active">Team Placements</button></a>
+                    <a href="{sanitize_filename(meet_name + '_team_placements')}"><button id = "sky-r" class="active">Team Placements</button></a>
                     <a href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button>Skyline Gallery</button></a>
                 </header>
                 <main>
@@ -141,7 +141,7 @@ for filename in os.listdir(folder_path):
                 "<h2>Ann Arbor Skyline Results</h2>"
             ).replace(
                 "<th>Image</th>",
-                "<th>Team Placement</th><th>Image</th>"
+                "<th>Skyline Indivdual Placement</th><th>Image</th>"
             ).replace(
                 '<button>Skyline Results</button></a>',
                 '<button class="active">Skyline Results</button></a>'
@@ -159,7 +159,7 @@ for filename in os.listdir(folder_path):
 
             skyline_content += f'''
                     <section id="skyline-comments">
-                        <p>{comments}</p>
+                        <p id=sky-r>{comments}</p>
                     </section>
             '''
 
@@ -269,7 +269,7 @@ for filename in os.listdir(folder_path):
                     <a href="meets_overview.html"><button id="Home">Home</button></a>
                     <a href="{sanitize_filename(meet_name)}"><button>Meet Results</button></a>
                     <a href="{sanitize_filename(meet_name + '_ann_arbor_skyline')}"><button>Skyline Results</button></a>
-                    <a href="{sanitize_filename(meet_name + '_team_placements')}"><button>Team Placements</button></a>
+                    <a href="{sanitize_filename(meet_name + '_team_placements')}"><button id = "sky-r">Team Placements</button></a>
                     <a href="{sanitize_filename(meet_name + '_skyline_gallery')}"><button class="active">Skyline Gallery</button></a>
                 </header>
                 <main>
