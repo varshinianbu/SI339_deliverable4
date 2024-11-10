@@ -165,6 +165,31 @@ details {
     border: 1px solid #ccc;
 }
 
+/* Skyline gallery grid styling */
+#skyline-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+    gap: 30px; /* Increase the gap for more spacing */
+    padding: 20px;
+    justify-content: center; /* Centers the grid */
+}
+
+/* Styling for each gallery item */
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styling for the gallery image */
+.gallery-image {
+    width: 400px; /* Increase the image size */
+    height: 400px; /* Ensure a uniform square shape */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Slightly larger shadow for emphasis */
+}
+
 /* Remove the default marker for summary element */
 summary::-webkit-details-marker {
     display: none;

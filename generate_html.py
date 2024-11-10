@@ -268,8 +268,11 @@ for filename in os.listdir(folder_path):
             for row in data[6:]:
                 if len(row) >= 7 and row[5] == "Ann Arbor Skyline":
                     profile_pic = "./AthleteImages/" + row[7]
-                    if not os.path.isfile(profile_pic): 
-                        profile_pic = "./AthleteImages/anonymous.jpg"
+                    
+                    # Skip if the image is anonymous.jpg
+                    if not os.path.isfile(profile_pic) or "anonymous.jpg" in profile_pic: 
+                        continue
+                    
                     skyline_images_content += f'''
                         <div class="gallery-item">
                             <img src="{profile_pic}" alt="{row[2]}" class="gallery-image">
