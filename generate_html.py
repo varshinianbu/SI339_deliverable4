@@ -49,6 +49,10 @@ for filename in os.listdir(folder_path):
                 <main>
                     <section id="meet-results">
                         <h2>Meet Results</h2>
+                        <section id="search">
+                            <label for="searchInput" id="searchLabel">Search Athletes:</label>
+                            <input type="text" id="searchInput" placeholder="Search by name...">
+                        </section>
                         <table id="athlete-table">
                             <thead>
                                 <tr>
@@ -231,6 +235,7 @@ for filename in os.listdir(folder_path):
                         </table>
                     </section>
                 </main>
+                <script src="search.js"></script>
             </body>
             </html>
             '''
@@ -244,6 +249,7 @@ for filename in os.listdir(folder_path):
                         </table>
                     </section>
                 </main>
+                <script src="skyline_search.js"></script>
             </body>
             </html>
                 '''
