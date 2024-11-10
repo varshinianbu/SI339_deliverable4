@@ -378,6 +378,25 @@ summary::-webkit-details-marker {
         background-color: #f2f2f2;
     }
 
+    /* Disable transitions and animations for all lightbox elements */
+    .lightbox, .lb-outerContainer, .lb-nav a.lb-prev, .lb-nav a.lb-next, .lb-data .lb-close, .lb-nav a.lb-prev:hover,
+    .lb-nav a.lb-next:hover, .lb-data .lb-close:hover, .lb-image,  .lb-prev, .lb-next, .lb-close, .lightboxOverlay, 
+    .lb-outerContainer {
+        transition: none !important;
+        animation: none !important;
+        opacity: 1 !important;
+        filter: none !important;
+    }
+
+    .lightbox, .lb-outerContainer, .lb-nav a.lb-prev, .lb-nav a.lb-next, .lb-data .lb-close, .lb-nav a.lb-prev:hover,
+    .lb-nav a.lb-next:hover, .lb-data .lb-close:hover, .lb-image,  .lb-prev, .lb-next, .lb-close {
+        background-color: transparent !important;
+    }
+
+    .lightbox, .lightboxOverlay, .lb-outerContainer, .lb-image {
+        background-color:rgb(0 0 0 / 50%);
+    }
+    
     /* Dark mode alternating row colors in reduced motion */
     @media (prefers-color-scheme: dark) {
         tbody tr:nth-child(even) {
