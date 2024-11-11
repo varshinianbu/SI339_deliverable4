@@ -396,9 +396,9 @@ summary::-webkit-details-marker {
     }
 
     /* Hover effect removal for table rows in reduced motion mode */
-    /* tbody tr:hover {
+    tbody tr:hover {
         background-color: inherit;
-    } */
+    }
 
     /* Default alternating row colors for even rows */
     tbody tr:nth-child(even) {
@@ -419,6 +419,11 @@ summary::-webkit-details-marker {
     .lightbox, .lb-outerContainer, .lb-nav a.lb-prev, .lb-nav a.lb-next, .lb-data .lb-close, .lb-nav a.lb-prev:hover,
     .lb-nav a.lb-next:hover, .lb-data .lb-close:hover, .lb-image,  .lb-prev, .lb-next, .lb-close {
         background-color: transparent !important;
+    }
+
+    /* Gets rid of loading gif for lightbox */ 
+    .lb-cancel {
+        background: none !important;
     }
 
     /* Dark mode background color for lightbox elements */
