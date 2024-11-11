@@ -389,15 +389,16 @@ summary::-webkit-details-marker {
         color: #000000;
     }
 
+    /* Remove hover effect for table rows in reduced motion mode */
     #ellipsis:focus, #ellipsis:active, #ellipsis:hover {
         outline: none;
-        background-color: #ffffff;
+        background-color: inherit;
     }
 
     /* Hover effect removal for table rows in reduced motion mode */
-    tbody tr:hover {
+    /* tbody tr:hover {
         background-color: inherit;
-    }
+    } */
 
     /* Default alternating row colors for even rows */
     tbody tr:nth-child(even) {
