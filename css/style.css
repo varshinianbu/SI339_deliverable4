@@ -389,6 +389,11 @@ summary::-webkit-details-marker {
         color: #000000;
     }
 
+    #ellipsis:focus, #ellipsis:active, #ellipsis:hover {
+        outline: none;
+        background-color: #ffffff;
+    }
+
     /* Hover effect removal for table rows in reduced motion mode */
     tbody tr:hover {
         background-color: inherit;
